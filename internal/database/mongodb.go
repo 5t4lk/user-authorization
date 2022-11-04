@@ -9,21 +9,22 @@ import (
 
 func DeleteOne(client *mongo.Client, ctx context.Context, dataBase, col string, query interface{}) (result *mongo.DeleteResult, err error) {
 	collection := client.Database(dataBase).Collection(col)
-
 	result, err = collection.DeleteOne(ctx, query)
+	
 	return
 }
 
 func UpdateOne(client *mongo.Client, ctx context.Context, dataBase, col string, filter, update interface{}) (result *mongo.UpdateResult, err error) {
 	collection := client.Database(dataBase).Collection(col)
-
 	result, err = collection.UpdateOne(ctx, filter, update)
+	
 	return
 }
 
 func InsertOne(client *mongo.Client, ctx context.Context, dataBase, col string, doc interface{}) (*mongo.InsertOneResult, error) {
 	collection := client.Database(dataBase).Collection(col)
 	result, err := collection.InsertOne(ctx, doc)
+	
 	return result, err
 }
 
@@ -40,6 +41,7 @@ func Connect(uri string) (*mongo.Client, context.Context, context.CancelFunc, er
 	ctx, cancel := context.WithTimeout(context.Background(),
 		30*time.Second)
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))
+	
 	return client, ctx, cancel, err
 }
 
@@ -47,5 +49,6 @@ func Query(client *mongo.Client, ctx context.Context, dataBase, col string, quer
 	collection := client.Database(dataBase).Collection(col)
 	result, err = collection.Find(ctx, query,
 		options.Find().SetProjection(field))
+	
 	return
 }
