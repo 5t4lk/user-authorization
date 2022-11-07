@@ -7,6 +7,6 @@
 # Description
 > The program allows the user to save, modify or delete the information from database that they enter.
 # Stack
-- Golang
-- MongoDB
-- Git
+- Golang - 
+- MongoDB - 
+- Git - 
